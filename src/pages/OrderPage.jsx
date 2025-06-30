@@ -55,6 +55,27 @@ function OrderPage() {
         {menuError && <p>Error: {error}</p>}
 
         <section>
+          {cart.length > 0 && (
+            <div className="mt-6 p-4 border-t">
+              <h3 className="font-semibold mb-2">Selected Items</h3>
+              <ul className="text-sm mb-4">
+                {cart.map((item) => (
+                  <li key={item._id}>
+                    {item.name} × {item.quantity}
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={handleConfirmOrder}
+                className="px-4 py-2 rounded"
+              >
+                Confirm Order
+              </button>
+            </div>
+          )}
+        </section>
+
+        <section>
           {menuItems && menuItems.length > 0 ? (
             <div className="row">
               {menuItems.map((menu) => (
@@ -88,27 +109,6 @@ function OrderPage() {
             </div>
           ) : (
             <p>No menu found</p>
-          )}
-        </section>
-
-        <section>
-          {cart.length > 0 && (
-            <div className="mt-6 p-4 border-t">
-              <h3 className="font-semibold mb-2">Selected Items</h3>
-              <ul className="text-sm mb-4">
-                {cart.map((item) => (
-                  <li key={item._id}>
-                    {item.name} × {item.quantity}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={handleConfirmOrder}
-                className="px-4 py-2 rounded"
-              >
-                Confirm Order
-              </button>
-            </div>
           )}
         </section>
       </main>
